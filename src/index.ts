@@ -3,10 +3,16 @@ import { jsonResponse } from './utils/json-response'
 
 const PORT = process.env.PORT || 3000
 
+const API_PREFIX = 'api'
+
 const server = http.createServer(
   (req: IncomingMessage, res: ServerResponse) => {
     const method = req.method
-    const url = req.url
+    const urlWithApi = req.url
+    if (!urlWithApi?.startsWith(`/${API_PREFIX}`))
+      return jsonResponse(res, 404, { error: 'Route not found' })
+
+    const url = urlWithApi.replace(API_PREFIX, '')
 
     switch (url) {
       case '/':
