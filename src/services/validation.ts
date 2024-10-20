@@ -2,7 +2,9 @@ import { validate as isUuid } from 'uuid'
 import { CreateUserInput } from '../types/dto'
 
 export class ValidationService {
-  static validateId(id: string): boolean {
+  static validateId(id?: string): boolean {
+    if (!id) return false
+
     return isUuid(id)
   }
 
