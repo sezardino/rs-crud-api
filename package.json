@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.ts",
     "build": "tsc",
+    "start:dev": "nodemon src/index.ts",
     "start:prod": "npm run build && node dist/index.js",
     "start:multi": "npm run build && node dist/cluster.js",
     "test": "jest"
